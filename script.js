@@ -10,5 +10,22 @@ const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
 
 function newTodo() {
-  alert('New TODO button clicked!')
+  let currentCount = Number(itemCountSpan.innerHTML)
+  let li = document.createElement('li');
+  let p = document.createElement('span');
+  let chkBox = document.createElement('input');
+  chkBox.type = "checkbox";
+  chkBox.onclick = () => { this.todoCompleted() }
+  li.className = classNames.TODO_ITEM;
+  p.className = classNames.TODO_TEXT;
+  p.innerHTML = "A new ToDo Item";
+  p.appendChild(chkBox)
+  li.appendChild(p)
+  list.appendChild(li)
+  currentCount++;
+  itemCountSpan.innerHTML = currentCount;
+}
+
+function todoCompleted() {
+
 }
