@@ -11,21 +11,43 @@ const uncheckedCountSpan = document.getElementById('unchecked-count')
 
 function newTodo() {
   let currentCount = Number(itemCountSpan.innerHTML)
+  let currentUncheckedCount = Number(uncheckedCountSpan.innerHTML)
   let li = document.createElement('li');
   let p = document.createElement('span');
   let chkBox = document.createElement('input');
+  let delBtn = document.createElement('input');
+  let itemText = document.createTextNode("A new ToDo Item");
   chkBox.type = "checkbox";
-  chkBox.onclick = () => { this.todoCompleted() }
+  chkBox.onclick = (event) => { this.todoCompleted(event) }
   li.className = classNames.TODO_ITEM;
   p.className = classNames.TODO_TEXT;
-  p.innerHTML = "A new ToDo Item";
+  delBtn.type = "button";
+  delBtn.style.float = "right";
+  delBtn.value = "Remove TODO";
+  delBtn.onclick = (event) => { this.deleteTodo(event) }
   p.appendChild(chkBox)
+  p.appendChild(itemText)
+  p.appendChild(delBtn)
   li.appendChild(p)
   list.appendChild(li)
   currentCount++;
+  currentUncheckedCount++;
   itemCountSpan.innerHTML = currentCount;
+  uncheckedCountSpan.innerHTML = currentUncheckedCount;
 }
 
-function todoCompleted() {
+function todoCompleted(e) {
+  let currentUncheckedCount = Number(uncheckedCountSpan.innerHTML)
+  let el = e.target
+  if (el.checked) {
+    currentUncheckedCount--;
+  }
+  else {
+    currentUncheckedCount++;
+  }
+  uncheckedCountSpan.innerHTML = currentUncheckedCount;
+}
 
+function deleteTodo(e) {
+  // TODO
 }
