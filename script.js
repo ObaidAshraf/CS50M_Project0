@@ -49,5 +49,14 @@ function todoCompleted(e) {
 }
 
 function deleteTodo(e) {
-  // TODO
+  let el = e.target;
+  let currentCount = Number(itemCountSpan.innerHTML)
+  let currentUncheckedCount = Number(uncheckedCountSpan.innerHTML)
+  let parent_node = el.parentNode.parentNode;
+  list.removeChild(parent_node);
+  currentCount--;
+  if (currentUncheckedCount > 0)
+    currentUncheckedCount--;
+  itemCountSpan.innerHTML = currentCount;
+  uncheckedCountSpan.innerHTML = currentUncheckedCount;
 }
